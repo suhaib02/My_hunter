@@ -30,9 +30,9 @@ int level_up(r_score *score, r_catpower *cat, r_win *wind)
 
 int get_mouse(r_catpower *cat, r_win *wind, r_mouse *mouse, r_score *score)
 {
-    int max_x_cat = cat->position.x, max_y_cat = cat->position.y;
-    int max_y_mouse = mouse->mouse_pos_i.y - 80;
-    int max_x_mouse = mouse->mouse_pos_i.x;
+    int x_cat = cat->position.x, y_cat = cat->position.y;
+    int y_mouse = mouse->mouse_pos_i.y - 80, x_mouse = mouse->mouse_pos_i.x;
+    wind->wond = 0;
     create_mouse(wind, mouse);
     sfSprite_setTexture(mouse->mouse_spr, mouse->mouse_txt, sfTrue);
     mouse->mouse_pos_i = sfMouse_getPosition(wind->wond);
@@ -40,8 +40,8 @@ int get_mouse(r_catpower *cat, r_win *wind, r_mouse *mouse, r_score *score)
     mouse->mouse_pos.y = mouse->mouse_pos_i.y - 95;
     sfSprite_setPosition(mouse->mouse_spr, mouse->mouse_pos);
     sfRenderWindow_drawSprite(wind->window, mouse->mouse_spr, NULL);
-        if (max_y_mouse >= max_y_cat && max_y_mouse <= max_y_cat + 80
-            && max_x_mouse >= max_x_cat && max_x_mouse <= max_x_cat + 145
+        if (y_mouse >= y_cat && y_mouse <= y_cat + 80
+            && x_mouse >= x_cat && x_mouse <= x_cat + 145
             && sfMouse_isButtonPressed(sfMouseLeft) == sfTrue) {
             cat->position.x -= cat->position.x + 200;
             cat->position.y = rand() % 700;
